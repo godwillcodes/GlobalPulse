@@ -20,7 +20,7 @@ const Home = ({ initialArticles, totalResults, currentPage, pageSize }: Props) =
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { page = 1, pageSize = 10 } = context.query;
+  const { page = 1, pageSize = 20 } = context.query;
 
   try {
     const res = await fetch(`http://localhost:3000/api/news?page=${page}&pageSize=${pageSize}`);
@@ -30,8 +30,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       props: {
         initialArticles: data.articles || [],
         totalResults: data.totalResults || 0,
-        currentPage: parseInt(page as string, 10),
-        pageSize: parseInt(pageSize as string, 10),
+        currentPage: parseInt(page as string, 20),
+        pageSize: parseInt(pageSize as string, 20),
       },
     };
   } catch (error) {
@@ -40,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         initialArticles: [],
         totalResults: 0,
         currentPage: 1,
-        pageSize: 10,
+        pageSize: 20,
       },
     };
   }
